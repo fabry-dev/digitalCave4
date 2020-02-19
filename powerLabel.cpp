@@ -18,7 +18,7 @@ powerLabel::powerLabel(QLabel *parent, int id, QRect hideGeo, QRect showGeo,bool
     hideAnim->setEasingCurve(QEasingCurve::InCurve);
     hideAnim->setStartValue(showGeo);
     hideAnim->setEndValue(hideGeo);
-   // connect(hideAnim,SIGNAL(finished()),this,SLOT(hide()));
+    connect(hideAnim,SIGNAL(finished()),this,SLOT(hide()));
     connect(hideAnim,SIGNAL(finished()),this,SIGNAL(hideAnimationOver()));
 
     floatingGone = false;

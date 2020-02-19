@@ -34,10 +34,12 @@ ledScreen::ledScreen(QLabel *parent, QString PATH) : QLabel(parent),PATH(PATH)
     {
         QPixmap bPix(PATH+"button/"+QString::number(i)+".png");
         bPix = bPix.scaled((double)bPix.width()*ledPixRatio,(double)bPix.height()*ledPixRatio);
-        int bdy = (1920*Touch2LedRatio-bPix.height()*5)/6;
-        int by = 1920*Touch2LedRatio + bdy + (bdy+bPix.height())*((i%5)) - bPix.height()/2;
+        double hTotal = (double)1920*Touch2LedRatio*2;
+        double delta_y = (double)(hTotal-bPix.height()*5)/4;
+        double y0 = (double)(height()-hTotal)/2;
+        int by = y0 +  (delta_y+bPix.height())*((i%5)) ;
         int sign = 2*(i>=5)-1;
-        int bx = width()/2+sign*(1080*Touch2LedRatio+offsets[i]*bPix.width()/2-bPix.width()/2)-bPix.width()/2;
+        int bx = width()/2+sign*(1080*Touch2LedRatio+offsets[i]*bPix.width()*0.6-bPix.width()/2)-bPix.width()/2;
 
         QRect showG = QRect(bx,by,bPix.width(),bPix.height());
         QRect hideG = QRect(bOffsetX+(i/5)*(bSpacingX+bPix.width()/ledPixRatio),450+(i%5)*(bPix.height()/ledPixRatio+bOffsetY),bPix.width()/ledPixRatio,bPix.height()/ledPixRatio);
@@ -56,10 +58,10 @@ ledScreen::ledScreen(QLabel *parent, QString PATH) : QLabel(parent),PATH(PATH)
         bhs+=QString::number(showG.height())+",";
     }
 
-  /*  qDebug()<<bxs;
+    qDebug()<<bxs;
     qDebug()<<bys;
     qDebug()<<bws;
-    qDebug()<<bhs;*/
+    qDebug()<<bhs;
 
     QLabel *touchLbl = new QLabel(this);
     touchLbl->resize(1080*Touch2LedRatio,1920*Touch2LedRatio);

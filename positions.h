@@ -3,13 +3,14 @@
 
 
 
-static int buttonLedX[10]={250,206,161,206,250,621,665,710,665,621};
-static int buttonLedY[10]={404,480,556,632,708,404,480,556,632,708};
-static int buttonLedW[10]={89,89,89,89,89,89,89,89,89,89};
-static int buttonLedH[10]={53,53,53,53,53,53,53,53,53,53};
+static int buttonLedX[10]={250,133,15,133,250,513,630,748,630,513};
+static int buttonLedY[10]={168,342,517,692,866,168,342,517,692,866};
+static int buttonLedW[10]={196,196,196,196,196,196,196,196,196,196};
+static int buttonLedH[10]={117,118,117,117,117,118,117,117,117,117};
+
 
 static double Touch2LedRatio = (double)53.1/250; //size led = size touch * Touch2Led
-static double ledPixRatio = 0.25;
+static double ledPixRatio = 0.55;
 
 static double ledWidth = 960;
 static double ledHeight = 1152;
