@@ -18,7 +18,7 @@ public:
 
 private:
     QString PATH;
-    mpvWidget *bgVp;
+    mpvWidget *bgVp,*introVp;
     std::vector<powerLabel*>buttons;
     std::vector<powerLabel*>titles;
     std::vector<powerLabel*>contents;
@@ -34,6 +34,8 @@ private slots:
     void hideButtons(void);
     void showContent(void);
     void goBack(void);
+    void startIntroVideo(void);
+    void stopIntroVideo(void);
 
 signals:
     void bgShouldRestart(void);

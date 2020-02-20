@@ -15,7 +15,17 @@ touchScreen::touchScreen(QLabel *parent, QString PATH) : QLabel(parent),PATH(PAT
     bgVp->setLoop(false);
     bgVp->show();
 
-    connect(this,SIGNAL(bgShouldRestart()),bgVp,SLOT(rewind()));
+    connect(this,SIGNAL(bgShouldRestart()),bgVp,SLOT(rewindAndPlay()));
+
+
+    introVp = new mpvWidget(this);
+    introVp->resize(size());
+    introVp->setProperty("keep-open","yes");
+    introVp->setLoop(false);
+    introVp->lower();
+    introVp->setMute(true);
+    introVp->show();
+
     QTimer::singleShot(10,this,SLOT(loadPlayer()));
 
     QLabel *iktvaLbl = new QLabel(this);
@@ -164,11 +174,25 @@ void touchScreen::showContent()
 
 void touchScreen::loadPlayer()
 {
-    bgVp->lower();
     bgVp->loadFilePaused(PATH+"touchBg4.mp4");
     bgVp->play();
+
+    introVp->loadFilePaused(PATH+"touchIntro4.mp4");
 }
 
+void touchScreen::startIntroVideo()
+{
+    introVp->playAndRaise();
+    introVp->raise();
+
+}
+
+void touchScreen::stopIntroVideo()
+{
+    introVp->lower();
+    introVp->pause();
+    introVp->rewind();
+}
 
 
 QRect touchScreen::led2screen(QRect original)

@@ -87,19 +87,32 @@ void mpvWidget::loadFilePaused(QString videoFile)
 
 void mpvWidget::rewind(void)
 {
-    //qDebug()<<"rewind";
+
+    command(QStringList()<< "seek"<<"0"<<"absolute"<<"exact");
+
+}
+
+
+void mpvWidget::rewindAndPlay(void)
+{
+
     command(QStringList()<< "seek"<<"0"<<"absolute"<<"exact");
     setProperty("pause",false);
 }
 
+
 void mpvWidget::stop()
 {
-
     const char *cmd[] = {"stop",NULL, NULL};
-
-
-
 }
+
+
+void mpvWidget::setMute(bool mute)
+{
+
+    setProperty("mute",mute);
+}
+
 
 
 void mpvWidget::stopAndHide(void)
@@ -156,6 +169,16 @@ void mpvWidget::setFileToLoad(QString file)
 
 
     filename = file;
+}
+
+
+
+void mpvWidget::loadPredefinedFile(void)
+{
+    show();
+    raise();
+    loadFilePaused(filename);
+
 }
 
 
@@ -307,3 +330,11 @@ void mpvWidget::mousePressEvent(QMouseEvent *event)
 {
     emit clicked(event->pos());
 }
+
+
+
+
+
+
+
+

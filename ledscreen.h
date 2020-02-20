@@ -20,14 +20,14 @@ public:
 
 private:
     QString PATH;
-    mpvWidget *bgVp;
+    mpvWidget *bgVp,*introVp;
     std::vector<powerLabel*>buttons;
     QRect touch2led(QRect original);
 
 private slots:
     void loadPlayer(void);
-    void startVideo(void);
-    void stopVideo(void);
+    void startIntroVideo(void);
+    void stopIntroVideo(void);
     void showButtons(void);
     void hideButtons(void);
 
