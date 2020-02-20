@@ -75,12 +75,12 @@ ledScreen::ledScreen(QLabel *parent, QString PATH) : QLabel(parent),PATH(PATH)
     qDebug()<<bws;
     qDebug()<<bhs;
 
-    QLabel *touchLbl = new QLabel(this);
+   /* QLabel *touchLbl = new QLabel(this);
     touchLbl->resize(1080*Touch2LedRatio,1920*Touch2LedRatio);
     touchLbl->move((width()-touchLbl->width())/2,(height()-touchLbl->height())/2);
     touchLbl->setStyleSheet("border: 1px solid red");
     touchLbl->show();
-
+*/
 
 
 
