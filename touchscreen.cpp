@@ -5,9 +5,14 @@
 #include "positions.h"
 
 
+#define TIMEOUT_DELAY 30*1000
+
 touchScreen::touchScreen(QLabel *parent, QString PATH) : QLabel(parent),PATH(PATH)
 {
     resize(1080,1920);
+
+    timeOutTimer = new QTimer(this);
+    connect(timeOutTimer,SIGNAL(timeout()),this,SLOT(goBack()));
 
     bgVp = new mpvWidget(this);
     bgVp->resize(size());
@@ -148,6 +153,7 @@ void touchScreen::goBack()
     achievementsLbl->animateHide();
     titles[activeContent]->animateHide();
     contents[activeContent]->animateHide();
+    timeOutTimer->stop();
 }
 
 
@@ -156,7 +162,7 @@ void touchScreen::buttonClick(void)
 
     hideButtons();
     activeContent = ((powerLabel*)QObject::sender())->getId();
-
+    timeOutTimer->start(TIMEOUT_DELAY);
 
 }
 

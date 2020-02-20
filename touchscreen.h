@@ -27,6 +27,7 @@ private:
     QRect led2screen(QRect original);
     int activeContent;
 
+    QTimer *timeOutTimer;
 private slots:
     void loadPlayer(void);
     void buttonClick(void);
